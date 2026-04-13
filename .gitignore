@@ -1,0 +1,8 @@
+test.py
+secret.py
+
+data/
+env/
+__pycache__/
+
+*pyc

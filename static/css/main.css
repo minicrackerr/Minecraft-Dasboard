@@ -1,0 +1,124 @@
+
+
+html {
+    background: url(assets/background.png) no-repeat;
+    background-size: 104%;
+    font-family: "Tinos", serif;
+}
+
+body {
+    margin: 0;
+    
+}
+
+#heading, #name, #status {
+    text-align: center;
+}
+
+#heading {
+    color: #5fa874;
+    text-shadow: 0.5px 0.5px 5px;
+    
+    font-weight: 600;
+    font-size: 200%;
+    font-style: italic;
+}
+
+
+#name {
+    font-size: 300%;
+    color: #03276e;
+    text-shadow: #0a48c5 0.5px 0.5px 2px;
+    
+}
+
+
+#status {
+    color: #9fff22;
+    text-shadow: 0.5px 0.5px 10px;
+}
+
+
+#dashboard {
+    /* border: black solid 4px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.dashboard-part {
+    /* border: green solid 4px; */
+
+    width: 32.5%;
+    height: 800px;
+    
+}
+
+/* MIDDLE PART */
+
+#dashboard-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#ip {
+    opacity: 1;
+    font-style: oblique;
+    font-size: 100%;
+    color: rgb(199, 98, 26);
+    text-shadow: 0.5px 0.5px 2px;
+    text-align: center;
+    border: rgb(63, 63, 63) solid 4px;
+    width: 100%;
+    background-color: rgba(109, 47, 2, 0.246);
+}
+
+
+
+#controll_buttons {
+    /* border: #214029 solid 3px; */
+    width: 100%;
+    padding: 20px 0px;
+    display: flex;
+    justify-content:space-evenly;
+}
+
+
+
+#controll_buttons button {
+    height: 150%;
+    width: 110%;
+    font-size: 150%;
+    gap: 5%;
+
+    display: flex;
+    align-items: center;
+
+    
+    border: none;
+}
+
+
+#playerlist {
+    width: 100%;
+}
+
+#playerlist hr {
+    border-color: #2e035a;
+}
+
+#playerlist h2{
+    font-size: 250%;
+    color: #033496
+}
+
+#playerlist h3 {
+    font-size: 120%;
+    color: rgb(244, 244, 27);
+    text-shadow: 0.5px 0.5px 2px;
+    background-color: rgba(117, 179, 24, 0.487);;
+}
+
