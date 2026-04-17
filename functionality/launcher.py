@@ -1,8 +1,5 @@
 import subprocess
-from mcstatus import JavaServer
 import time
-
-server = JavaServer.lookup("localhost:25565")
 
 class Launcher():
     def __init__(self,check_cmd,start_cmd):

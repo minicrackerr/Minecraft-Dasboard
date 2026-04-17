@@ -2,22 +2,28 @@
 
 {% block head %}
     <title>MC Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Iceberg&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 {% endblock %}
 
 {% block body %}
-    <h1 id="heading">Dashboard - Cracker</h1>
-    <h1 id="name">{{ server.name }}</h1>
     <div id="dashboard">
-        <div class="dashboard-part"></div>
-        <div class="dashboard-part" id="dashboard-middle">
+        <div class="dashboard_part" id="dashboard_left">
+            <div id="chat_box">
+                <pre>{{ server.chat }}</pre>
+            </div>
+            <form method="POST" action="/command_submitted">
+                <input type="text" name="command">
+                <button type="submit">Senden</button>
+            </form>
+        </div>
+        <div class="dashboard_part" id="dashboard_middle">
+            <h1 id="heading">Dashboard - Cracker</h1>
+            <h1 id="name">{{ server.name }}</h1>
+
             <h1 id="status">{{ server.status }} - {{ server.players_online }}/{{ server.players_max }}</h1>
              <div id="ip">
                     <h3>desktop-publication.gl.joinmc.link</h3>
-                </div> 
+                </div>
             <div id="controll_buttons">
                 <form method="POST" action="/controls_triggered"><button type="submit" name="controls" value="start"  style="background-color: #608b17;"><span class="material-symbols-outlined">play_circle</span>Starten</button></form>
                 <form method="POST" action="/controls_triggered"><button type="submit" name="controls" value="stop" style="background-color: #821d2d;"><span class="material-symbols-outlined">stop_circle</span>Stoppen</button></form>
@@ -30,6 +36,6 @@
             </div>
         </div>
 
-        <div class="dashboard-part"></div>
+        <div class="dashboard_part"></div>
     </div>
 {% endblock %}

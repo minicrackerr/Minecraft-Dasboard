@@ -1,41 +1,11 @@
-
-
 html {
-    background: url(assets/background.png) no-repeat;
+    background: url(assets/dashboard_bg.png) repeat;
     background-size: 104%;
     font-family: "Tinos", serif;
 }
 
 body {
     margin: 0;
-    
-}
-
-#heading, #name, #status {
-    text-align: center;
-}
-
-#heading {
-    color: #5fa874;
-    text-shadow: 0.5px 0.5px 5px;
-    
-    font-weight: 600;
-    font-size: 200%;
-    font-style: italic;
-}
-
-
-#name {
-    font-size: 300%;
-    color: #03276e;
-    text-shadow: #0a48c5 0.5px 0.5px 2px;
-    
-}
-
-
-#status {
-    color: #9fff22;
-    text-shadow: 0.5px 0.5px 10px;
 }
 
 
@@ -46,61 +16,74 @@ body {
     justify-content: space-between;
 }
 
-
-.dashboard-part {
-    /* border: green solid 4px; */
-
+.dashboard_part {
     width: 32.5%;
     height: 800px;
-    
 }
 
 /* MIDDLE PART */
-
-#dashboard-middle {
+#dashboard_middle {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-#ip {
-    opacity: 1;
-    font-style: oblique;
-    font-size: 100%;
-    color: rgb(199, 98, 26);
-    text-shadow: 0.5px 0.5px 2px;
+#heading, #name, #status {
     text-align: center;
-    border: rgb(63, 63, 63) solid 4px;
-    width: 100%;
-    background-color: rgba(109, 47, 2, 0.246);
 }
 
+#heading {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 200%;
+    color: #5fa874;
+    text-shadow: 0.5px 0.5px 5px;
+}
 
+#name {
+    font-size: 300%;
+    text-shadow: #0a48c5 0.5px 0.5px 2px;
+    color: #03276e;
+}
+
+#status {
+    text-shadow: 0.5px 0.5px 10px;
+    color: #9fff22;
+}
+
+#ip {
+    font-style: oblique;
+    font-size: 100%;
+    text-shadow: 0.5px 0.5px 2px;
+    color: rgb(199, 98, 26);
+    background-color: rgba(109, 47, 2, 0.246);
+    border: rgb(63, 63, 63) solid 4px;
+
+    width: 100%;
+
+    text-align: center;
+}
 
 #controll_buttons {
-    /* border: #214029 solid 3px; */
     width: 100%;
     padding: 20px 0px;
+
     display: flex;
     justify-content:space-evenly;
 }
 
-
-
 #controll_buttons button {
+    font-size: 150%;
+    border: none;
+
     height: 150%;
     width: 110%;
-    font-size: 150%;
     gap: 5%;
 
     display: flex;
     align-items: center;
-
-    
-    border: none;
 }
-
 
 #playerlist {
     width: 100%;
@@ -117,8 +100,58 @@ body {
 
 #playerlist h3 {
     font-size: 120%;
-    color: rgb(244, 244, 27);
     text-shadow: 0.5px 0.5px 2px;
+    color: rgb(244, 244, 27);
     background-color: rgba(117, 179, 24, 0.487);;
 }
 
+/* LEFT PART */
+
+#chat_box {
+    background-color: rgba(80, 40, 4, 0.295);
+    border: rgb(87, 44, 7) solid 4px;
+
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+}
+
+#chat_box pre {
+    font-size: 140%;
+    font-weight: 600;
+    text-shadow: 0.2px 0.2px 2px;
+    color: #608b17;
+
+    margin: 2%;
+}
+
+#dashboard_left form {
+    height: 100%;
+    margin: 5%;
+
+    display: flex;
+}
+
+#dashboard_left form input {
+    font-size: 120%;
+    font-weight: 600;
+    text-shadow: 0.2px 0.2px 2px;
+    color: #608b17;
+    background-color: rgba(80, 40, 4, 0.295);
+    border: rgb(87, 44, 7) solid 4px;
+    
+    width: 80%;
+    height: 4%;
+}
+
+#dashboard_left form button {
+    font-size: 150%;
+    background-color: #608b17;
+    border: none;
+    
+    width: 20%;
+    height: 5.2%;
+    margin-left: 1%;
+
+    text-align: center;
+}
