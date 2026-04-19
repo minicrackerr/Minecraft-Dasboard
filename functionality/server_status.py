@@ -32,7 +32,7 @@ class Server:
             self.players_max = command_list[SLICER_MIDDLE+12:SLICER_END-1]
             self.players_list = command_list[SLICER_END+16:]
             self.chat = self.get_chat_history()
-            while self.chat.count("\n") > 30:
+            while self.chat.count("\n") > 32:
                 self.chat = self.chat[self.chat.find("\n")+1:]
         except Exception as e:
             print(f">>> | {e}")
