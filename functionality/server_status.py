@@ -45,8 +45,9 @@ class Server:
             rcon.connect()
             log_message = rcon.command(f'tellraw @a {{"text":"<Dashboard> {message}"}}')
             rcon.disconnect()
-            with open(f"{PROJECT_PATH}{self.name}/logs/latest.log", "a") as f:
-                f.write(f'{time.strftime("[%H:%M]", time.localtime())} {log_message} \n')
+            print(log_message)
+            #with open(f"{PROJECT_PATH}{self.name}/logs/latest.log", "a") as f:
+            #    f.write(f'{time.strftime("[%H:%M]", time.localtime())} {log_message} \n')
         except Exception as e:
             print(f">>> | {e}")
 
