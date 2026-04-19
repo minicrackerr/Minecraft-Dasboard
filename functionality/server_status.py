@@ -54,23 +54,23 @@ class Server:
         path = f"{PROJECT_PATH}{self.name}/logs/latest.log"
         with open(path, "r") as file:
             chat_history = new_message = ""
-        for line in file:
-            if not line.find("[Not Secure]") == -1:
-                message = f'[{line[12:17]}] {line.replace("[Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Not Secure]", "").replace("[","<").replace("]",">")[27:]}'
-                #\n each 50 chars
-                BP = BREAKING_POINT = 52
-                if len(message) > BP:
-                    for i,length in enumerate(range(0,len(message),BP)):
-                        if not length > len(message)-BP: new_message += message[i*BP:i*BP+BP]+"\n"
-                        else: new_message += message[i*BP:i*BP+BP]
-                    chat_history += new_message
-                    new_message = ""
-                else: chat_history += message
-            if not line.find("joined the game") == -1:
-                join_message = f"[{line[12:17]}] {line[88:]}"
-                chat_history += join_message
-            if not line.find("<Dashboard>") == -1:
-                chat_history += line
+            for line in file:
+                if not line.find("[Not Secure]") == -1:
+                    message = f'[{line[12:17]}] {line.replace("[Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Not Secure]", "").replace("[","<").replace("]",">")[27:]}'
+                    #\n each 50 chars
+                    BP = BREAKING_POINT = 52
+                    if len(message) > BP:
+                        for i,length in enumerate(range(0,len(message),BP)):
+                            if not length > len(message)-BP: new_message += message[i*BP:i*BP+BP]+"\n"
+                            else: new_message += message[i*BP:i*BP+BP]
+                        chat_history += new_message
+                        new_message = ""
+                    else: chat_history += message
+                if not line.find("joined the game") == -1:
+                    join_message = f"[{line[12:17]}] {line[88:]}"
+                    chat_history += join_message
+                if not line.find("<Dashboard>") == -1:
+                    chat_history += line
             return chat_history
 
     # JSON INTERACTIONS
