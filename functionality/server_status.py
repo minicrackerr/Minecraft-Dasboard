@@ -3,6 +3,7 @@ import json
 import os
 from functionality.launcher import Launcher
 from functionality.constants import PROJECT_PATH, EXECUTABLE
+import time
 
 class Server:
     def __init__(self,name,ip,rcon_password,rcon_port=25575):
@@ -44,8 +45,8 @@ class Server:
             rcon.connect()
             log_message = rcon.command(f'tellraw @a {{"text":"<Dashboard> {message}"}}')
             rcon.disconnect()
-            # with open(f"{PROJECT_PATH}{self.name}/logs/latest.log", "a") as f:
-            #     f.write(f'{time.strftime("[%H:%M]", time.localtime())} {log_message} \n')
+            with open(f"{PROJECT_PATH}{self.name}/logs/latest.log", "a") as f:
+                f.write(f'{time.strftime("[%H:%M]", time.localtime())} {log_message} \n')
         except Exception as e:
             print(f">>> | {e}")
 
@@ -68,8 +69,8 @@ class Server:
             if not line.find("joined the game") == -1:
                 join_message = f"[{line[12:17]}] {line[88:]}"
                 chat_history += join_message
-            # if not line.find("<Dashboard>") == -1:
-            #     chat_history += line
+            if not line.find("<Dashboard>") == -1:
+                chat_history += line
             return chat_history
 
     # JSON INTERACTIONS
