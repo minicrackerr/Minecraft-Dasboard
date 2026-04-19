@@ -42,8 +42,11 @@ class Server:
         try:
             rcon = MCRcon(self.ip, self.rcon_password, self.rcon_port)
             rcon.connect()
-            rcon.command(f'tellraw @a {{"text":"<Dashboard> {message}"}}')
+            log_message = rcon.command(f'tellraw @a {{"text":"<Dashboard> {message}"}}')
             rcon.disconnect()
+            print(log_message)
+            with open(f"{PROJECT_PATH}{self.name}/logs/latest.log", "a") as f:
+                f.write(log_message)
         except Exception as e:
             print(f">>> | {e}")
 
@@ -51,18 +54,23 @@ class Server:
         path = f"{PROJECT_PATH}{self.name}/logs/latest.log"
         with open(path, "r") as file:
             chat_history = new_message = ""
-            for x in file:
-                if not x.find("[Not Secure]") == -1:
-                    message = f'[{x[12:17]}] {x.replace("[Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Not Secure]", "").replace("[","<").replace("]",">")[27:]}'
-                    #\n each 50 chars
-                    BP = BREAKING_POINT = 52
-                    if len(message) > BP:
-                        for i,x in enumerate(range(0,len(message),BP)):
-                            if not x > len(message)-BP: new_message += message[i*BP:i*BP+BP]+"\n"
-                            else: new_message += message[i*BP:i*BP+BP]
-                        chat_history += new_message
-                        new_message = ""
-                    else: chat_history += message
+        for line in file:
+            if not line.find("[Not Secure]") == -1:
+                message = f'[{line[12:17]}] {line.replace("[Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Not Secure]", "").replace("[","<").replace("]",">")[27:]}'
+                #\n each 50 chars
+                BP = BREAKING_POINT = 52
+                if len(message) > BP:
+                    for i,length in enumerate(range(0,len(message),BP)):
+                        if not length > len(message)-BP: new_message += message[i*BP:i*BP+BP]+"\n"
+                        else: new_message += message[i*BP:i*BP+BP]
+                    chat_history += new_message
+                    new_message = ""
+                else: chat_history += message
+            if not line.find("joined the game") == -1:
+                join_message = f"[{line[12:17]}] {line[88:]}"
+                chat_history += join_message
+            if not line.find("<Dashboard>") == -1:
+                chat_history += line
             return chat_history
 
     # JSON INTERACTIONS
