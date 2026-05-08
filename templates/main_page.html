@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_page.css') }}">
+    <title>Login Page</title>
+{% endblock %}
+
+{% block body %}
+    <h1 id="heading">Main Page</h1>
+    <div id="servers">
+        {% for server in server_list%}
+        <a href="/{{ server_list[server].name }}">
+            <p>
+                {% if server_list[server].status == "Online" %} {{ server_list[server].players_online }}/{{ server_list[server].players_max }} 🟢 {% endif %}
+                {% if server_list[server].status == "Offline" %} <span style="color: red;"> {{ server_list[server].players_online }}/{{ server_list[server].players_max }} 🔴</span> {% endif %}
+            </p>
+            <h1>{{ server_list[server].name }}</h1>
+            <h2>xx-xx-xxxx - xx-xx-xxxx</h1>
+        </a>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -33,19 +33,3 @@ class Launcher():
         self.stop_instance()
         time.sleep(5)
         self.start_instance()
-
-
-playit_launcher = Launcher(
-    check_cmd=["pgrep", "-f", "playit-linux-amd64"],
-    start_cmd=['screen', '-S', 'ply', '-dm',
-                'bash', '-c', '/home/playit/playit-linux-amd64'])
-
-homies_launcher = Launcher(
-    check_cmd=["pgrep", "-f", "@user_jvm_args.txt"],
-    start_cmd=['screen', '-S', 'homies', '-dm',
-                'bash', '-c', 'cd /home/homies/ && ./run.sh'])
-
-stoneblock_launcher = Launcher(
-    check_cmd=["pgrep", "-f", "@user_jvm_args.txt"],
-    start_cmd=['screen', '-S', 'stoneblock', '-dm',
-                'bash', '-c', 'cd /home/stoneblock-4-8.1/ && ./run.sh'])

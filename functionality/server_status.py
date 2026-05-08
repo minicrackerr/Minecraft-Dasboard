@@ -3,14 +3,17 @@ import json
 import os
 from functionality.launcher import Launcher
 from functionality.constants import PROJECT_PATH, EXECUTABLE
-import time
 
 class Server:
-    def __init__(self,name,ip,rcon_password,rcon_port=25575):
-        self.name = name
-        self.ip = ip
-        self.rcon_password = rcon_password
-        self.rcon_port = rcon_port
+    def __init__(self,data):
+        self.name = data["name"]
+        self.ip = data["ip"]
+        self.rcon_password = data["rcon_password"]
+        self.rcon_port = data["rcon_port"]
+        # self.modpack = data["modpack"]
+        # self.version = data["version"]
+        # self.modpack_download = data["modpack_download"]
+        # self.world_download = data["world_download"]
         self.launcher = Launcher(
                                 check_cmd=["pgrep", "-f", "@user_jvm_args.txt"],
                                 start_cmd=['screen', '-S', self.name, '-dm',
@@ -57,8 +60,8 @@ class Server:
             for line in file:
                 if not line.find("[Not Secure]") == -1:
                     message = f'[{line[12:17]}] {line.replace("[Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Not Secure]", "").replace("[","<").replace("]",">").replace("<Rcon>","<Dasboard>")[27:]}'
-                    #\n each 50 chars
-                    BP = BREAKING_POINT = 52
+                    #\n each BP (BREAKING_POINT) chars
+                    BP = 52
                     if len(message) > BP:
                         for i,length in enumerate(range(0,len(message),BP)):
                             if not length > len(message)-BP: new_message += message[i*BP:i*BP+BP]+"\n"
@@ -73,26 +76,20 @@ class Server:
 
     # JSON INTERACTIONS
     def load(self):
-        with open(f"data/server/{self.name}.json", "r") as f: data = json.load(f)
+        with open(f"data/server/{self.name}.json", "r", encoding="utf-8") as f: data = json.load(f)
         return data
 
     def save(self,data):
         try: 
-            with open(f"data/server/{self.name}.json", "w") as f: json.dump(data,f,indent=4)
+            with open(f"data/server/{self.name}.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
         except FileNotFoundError:
             os.makedirs("data/server")
             self.save(data=data)
 
-    def update_json(self):
-        self.refresh()
+    def create_json(self):
         data = {
             "name": self.name,
             "ip": self.ip,
             "rcon_password": self.rcon_password,
-            "rcon_port": self.rcon_port,
-            "status": self.status,
-            "players_online": self.players_online,
-            "players_max": self.players_max,
-            "players_list": self.players_list,
-            "chat": self.chat}
+            "rcon_port": self.rcon_port}
         self.save(data=data)

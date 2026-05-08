@@ -1,5 +1,5 @@
 html {
-    background: url(assets/dashboard_bg.png) repeat;
+    background: url("/static/images/dashboard_bg.png") repeat;
     background-size: 104%;
     font-family: "Tinos", serif;
 }
@@ -8,6 +8,9 @@ body {
     margin: 0;
 }
 
+button {
+    color: beige;
+}
 
 #dashboard {
     /* border: black solid 4px; */
@@ -36,15 +39,15 @@ body {
 #heading {
     font-style: italic;
     font-weight: 600;
-    font-size: 200%;
+    font-size: 400%;
     color: #5fa874;
     text-shadow: 0.5px 0.5px 5px;
 }
 
 #name {
     font-size: 300%;
-    text-shadow: #0a48c5 0.5px 0.5px 2px;
-    color: #03276e;
+    text-shadow: #2ec8d9 0.5px 0.5px 2px;
+    color: #2ec8d9;
 }
 
 #status {
@@ -93,9 +96,9 @@ body {
     border-color: #2e035a;
 }
 
-#playerlist h2{
+#playerlist h2 {
     font-size: 250%;
-    color: #033496
+    color: #2ec8d9
 }
 
 #playerlist h3 {
@@ -108,7 +111,7 @@ body {
 /* LEFT PART */
 
 #chat_box {
-    background-color: rgba(80, 40, 4, 0.295);
+    background-color: rgba(80, 40, 4, 0.3);
     border: rgb(87, 44, 7) solid 4px;
 
     width: 90%;
@@ -155,3 +158,54 @@ body {
 
     text-align: center;
 }
+
+/* RIGHT PART */
+
+#dashboard_right div {
+    text-shadow: 0.2px 0.2px 2px;
+    color: #608b17;
+    border: rgb(87, 44, 7) solid 3px;
+    background-color: rgba(80, 40, 4, 0.3);
+
+    width: 95%;
+}
+
+#info_box { 
+    height: 30%;
+    margin-top: 10%;
+    
+    text-align: center;
+}
+
+#info_box h3 {
+    font-size: 250%;
+}
+
+#info_box h3 {
+    text-align: left;
+    margin-left: 4%;
+}
+
+#info_box button {
+    font-size: 150%;
+    background-color: #538313;
+    border: none;
+
+    width: 40%;
+    height: 30%;
+}
+
+#info_box #modpack_download {
+    margin-right: 10%;
+}
+
+#dashboard_right img {
+    width: 100%;
+    display: block;
+}
+
+#stats_link {
+    margin-top: 8.5%;
+    margin-bottom: 8.5%;
+}
+
