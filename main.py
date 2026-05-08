@@ -50,14 +50,14 @@ def controls_triggered():
     elif button_value == "restart":
         playit_launcher.restart_instance()
         server.launcher.restart_instance()
-    return redirect(f"/{server_list[server].name}")
+    return redirect(f"/{server.name}")
 
 @app.route("/command_submitted", methods=["POST"])
 def command_submitted():
     text_input = request.form.get("command")
     # print(request.headers.get())
     server.send_message(text_input)
-    return redirect(f"/{server_list[server].name}")
+    return redirect(f"/{server.name}")
 
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0",port=80)

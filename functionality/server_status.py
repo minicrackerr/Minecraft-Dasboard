@@ -59,7 +59,7 @@ class Server:
             chat_history = new_message = ""
             for line in file:
                 if not line.find("[Not Secure]") == -1:
-                    message = f'[{line[11:16]}] {line.replace("[Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Not Secure]", "").replace("[","<").replace("]",">").replace("<Rcon>","<Dashboard>")[25:]}'
+                    message = f'[{line[11:16]}] {line.replace("[Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Not Secure]", "").replace("[","<").replace("]",">").replace("<Rcon>","<Dashboard>")[26:]}'
                     #\n each BP (BREAKING_POINT) chars
                     BP = 52
                     if len(message) > BP:
