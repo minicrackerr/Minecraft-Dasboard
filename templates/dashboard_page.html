@@ -15,7 +15,7 @@
             <div id="chat_box">
                 <pre>{{ server.chat }}</pre>
             </div>
-            <form method="POST" action="/command_submitted">
+            <form method="POST" action="{{ server.name }}_command_submitted">
                 <input type="text" name="command">
                 <button type="submit">Senden</button>
             </form>
@@ -29,9 +29,9 @@
                     <h3>desktop-publication.gl.joinmc.link</h3>
                 </div>
             <div id="controll_buttons">
-                <form method="POST" action="/controls_triggered"><button type="submit" name="controls" value="start"  style="background-color: #608b17;"><span class="material-symbols-outlined">play_circle</span>Starten</button></form>
-                <form method="POST" action="/controls_triggered"><button type="submit" name="controls" value="stop" style="background-color: #821d2d;"><span class="material-symbols-outlined">stop_circle</span>Stoppen</button></form>
-                <form method="POST" action="/controls_triggered"><button type="submit" name="controls" value="restart" style="background-color: #ad6a27;"><span class="material-symbols-outlined">change_circle</span>Neustarten</button></form>
+                <form method="POST" action="{{ server.name }}_controls_triggered"><button type="submit" name="controls" value="start"  style="background-color: #608b17;"><span class="material-symbols-outlined">play_circle</span>Starten</button></form>
+                <form method="POST" action="{{ server.name }}_controls_triggered"><button type="submit" name="controls" value="stop" style="background-color: #821d2d;"><span class="material-symbols-outlined">stop_circle</span>Stoppen</button></form>
+                <form method="POST" action="{{ server.name }}_controls_triggered"><button type="submit" name="controls" value="restart" style="background-color: #ad6a27;"><span class="material-symbols-outlined">change_circle</span>Neustarten</button></form>
             </div>
             <div id="playerlist">
 

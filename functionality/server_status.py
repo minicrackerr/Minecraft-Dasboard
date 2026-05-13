@@ -2,22 +2,22 @@ from mcrcon import MCRcon
 import json
 import os
 from functionality.launcher import Launcher
-from functionality.constants import PROJECT_PATH, EXECUTABLE
+from functionality.constants import Paths_Constants as PC
 
 class Server:
     def __init__(self,data):
         self.name = data["name"]
         self.ip = data["ip"]
         self.rcon_password = data["rcon_password"]
-        self.rcon_port = data["rcon_port"]
-        # self.modpack = data["modpack"]
-        # self.version = data["version"]
-        # self.modpack_download = data["modpack_download"]
-        # self.world_download = data["world_download"]
+        self.rcon_port = int(data["rcon_port"])
+        self.modpack = data["modpack"]
+        self.version = data["version"]
+        self.modpack_download = data["modpack_download"]
+        self.world_download = data["world_download"]
         self.launcher = Launcher(
                                 check_cmd=["pgrep", "-f", "@user_jvm_args.txt"],
                                 start_cmd=['screen', '-S', self.name, '-dm',
-                                            'bash', '-c', f'cd {PROJECT_PATH}{self.name}/ && ./{EXECUTABLE}'])
+                                            'bash', '-c', f'cd {PC.PROJECT_PATH}{self.name}/ && ./{PC.EXECUTABLE}'])
         self.refresh()
 
     def refresh(self):
@@ -54,7 +54,7 @@ class Server:
             print(f">>> | {e}")
 
     def get_chat_history(self):
-        path = f"{PROJECT_PATH}{self.name}/logs/latest.log"
+        path = f"{PC.PROJECT_PATH}{self.name}/logs/latest.log"
         with open(path, "r") as file:
             chat_history = new_message = ""
             for line in file:
@@ -91,5 +91,9 @@ class Server:
             "name": self.name,
             "ip": self.ip,
             "rcon_password": self.rcon_password,
-            "rcon_port": self.rcon_port}
+            "rcon_port": self.rcon_port,
+            "modpack": self.modpack,
+            "version": self.version,
+            "modpack_download": self.modpack_download,
+            "world_download": self.world_download}
         self.save(data=data)
