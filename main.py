@@ -14,8 +14,8 @@ app = flask.Flask(__name__)
 
 server_list = {}
 
-for file in os.listdir("data/server/"):
-    with open(f"data/server/{file}", "r", encoding="utf-8") as f: data = json.load(f)
+for file in os.listdir("data/config/"):
+    with open(f"data/config/{file}", "r", encoding="utf-8") as f: data = json.load(f)
     server_list[data["name"]] = Server(data=data)
 
 ### MAIN-PAGE

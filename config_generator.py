@@ -4,9 +4,9 @@ import json
 
 def create_json(data):
     try: 
-        with open(f"data/server/{data['name']}.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
+        with open(f"data/config/{data['name']}.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
     except FileNotFoundError:
-        os.makedirs("data/server")
+        os.makedirs("data/config")
         create_json(data=data)
 
 

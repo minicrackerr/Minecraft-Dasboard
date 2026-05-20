@@ -76,14 +76,14 @@ class Server:
 
     # JSON INTERACTIONS
     def load(self):
-        with open(f"data/server/{self.name}.json", "r", encoding="utf-8") as f: data = json.load(f)
+        with open(f"data/config/{self.name}.json", "r", encoding="utf-8") as f: data = json.load(f)
         return data
 
     def save(self,data):
         try: 
-            with open(f"data/server/{self.name}.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
+            with open(f"data/config/{self.name}.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
         except FileNotFoundError:
-            os.makedirs("data/server")
+            os.makedirs("data/config")
             self.save(data=data)
 
     def create_json(self):
