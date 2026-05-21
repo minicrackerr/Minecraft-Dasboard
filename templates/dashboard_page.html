@@ -46,7 +46,7 @@
         <div class="dashboard_part" id="dashboard_right">
             <div id="info_box">
                 <h3>Modpack <span>-</span> 1.21.11</h3>
-                <a href="{{ server.modpack_download }}" target="_blank"><button id="modpack_download">Modpack Download</button></a>
+                <a href="{{ url_for('return_modpack_download', server_name=server.name) }}" target="_blank"><button id="modpack_download">Modpack Download</button></a>
                 <a href="{{ server.world_download }}" target="_blank"><button>World Download</button></a>
             </div>
             <div id="stats_link">
