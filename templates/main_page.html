@@ -1,13 +1,14 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block head %}
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main_page.css') }}">
     <title>Main Page</title>
-{% endblock %}
+</head>
 
-{% block body %}
+<body>
     <h1 id="heading">Main Page</h1>
     <div id="servers">
         {% for server in server_list%}
@@ -21,4 +22,6 @@
         </a>
         {% endfor %}
     </div>
-{% endblock %}
+</body>
+
+</html>
