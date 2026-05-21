@@ -70,6 +70,11 @@ def return_modpack_download(server_name):
     modpack_path = f"server/{server_list[server_name].name}/"
     return flask.send_from_directory(modpack_path, "modpack_download.zip")
 
+@app.route('/server/<server_name>/world_download')
+def return_world_download(server_name):
+    world_path = f"server/{server_list[server_name].name}/"
+    return flask.send_from_directory(world_path, "world_download.zip")
+
 @app.route('/server/<server_name>/screenshots/<filename>')
 def return_screenshot(server_name, filename):
     screenshots_path = f"server/{server_list[server_name].name}/screenshots"
