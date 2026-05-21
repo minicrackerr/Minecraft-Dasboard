@@ -58,6 +58,9 @@ def server_controlls(server_name, value):
     elif value == "restart":
         playit_launcher.restart_instance()
         server.launcher.restart_instance()
+    elif value == "message":
+        text_input = flask.request.form.get("message")
+        server.send_message(text_input)
     return flask.redirect(f"/server/{server_name}")
 
 ### FILE ACCESS

@@ -18,8 +18,8 @@
             <div id="chat_box">
                 <pre>{{ server.chat }}</pre>
             </div>
-            <form method="POST" action="{{ server.name }}_command_submitted">
-                <input type="text" name="command">
+            <form method="POST" action="{{ url_for('server_controlls', server_name=server.name, value='message') }}">
+                <input type="text" name="message">
                 <button type="submit">Senden</button>
             </form>
         </div>
