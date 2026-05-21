@@ -14,6 +14,7 @@ class Server:
         self.version = data["version"]
         self.modpack_download = data["modpack_download"]
         self.world_download = data["world_download"]
+        self.screenshots = [pic for pic in os.listdir(f"server/{self.name}/screenshots")]
         self.launcher = Launcher(
                                 check_cmd=["pgrep", "-f", "@user_jvm_args.txt"],
                                 start_cmd=['screen', '-S', self.name, '-dm',
@@ -37,6 +38,7 @@ class Server:
             self.chat = self.get_chat_history()
             while self.chat.count("\n") > 32:
                 self.chat = self.chat[self.chat.find("\n")+1:]
+            self.screenshots = [pic for pic in os.listdir(f"server/{self.name}/screenshots")]
         except Exception as e:
             print(f">>> | {e}")
             self.status = "Offline"
@@ -76,14 +78,14 @@ class Server:
 
     # JSON INTERACTIONS
     def load(self):
-        with open(f"data/config/{self.name}.json", "r", encoding="utf-8") as f: data = json.load(f)
+        with open(f"server/{self.name}/config.json", "r", encoding="utf-8") as f: data = json.load(f)
         return data
 
     def save(self,data):
         try: 
-            with open(f"data/config/{self.name}.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
+            with open(f"server/{self.name}/config.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
         except FileNotFoundError:
-            os.makedirs("data/config")
+            os.makedirs(f"server/{self.name}")
             self.save(data=data)
 
     def create_json(self):

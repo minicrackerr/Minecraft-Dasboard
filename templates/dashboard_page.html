@@ -29,9 +29,9 @@
                     <h3>desktop-publication.gl.joinmc.link</h3>
                 </div>
             <div id="controll_buttons">
-                <form method="POST" action="{{ server.name }}_controls_triggered"><button type="submit" name="controls" value="start"  style="background-color: #608b17;"><span class="material-symbols-outlined">play_circle</span>Starten</button></form>
-                <form method="POST" action="{{ server.name }}_controls_triggered"><button type="submit" name="controls" value="stop" style="background-color: #821d2d;"><span class="material-symbols-outlined">stop_circle</span>Stoppen</button></form>
-                <form method="POST" action="{{ server.name }}_controls_triggered"><button type="submit" name="controls" value="restart" style="background-color: #ad6a27;"><span class="material-symbols-outlined">change_circle</span>Neustarten</button></form>
+                <form method="POST" action="{{ url_for('server_controlls', server_name=server.name, value='start') }}"><button type="submit" style="background-color: #608b17;"><span class="material-symbols-outlined">play_circle</span>Starten</button></form>
+                <form method="POST" action="{{ url_for('server_controlls', server_name=server.name, value='stop') }}"><button type="submit" style="background-color: #821d2d;"><span class="material-symbols-outlined">stop_circle</span>Stoppen</button></form>
+                <form method="POST" action="{{ url_for('server_controlls', server_name=server.name, value='restart') }}"><button type="submit" style="background-color: #ad6a27;"><span class="material-symbols-outlined">change_circle</span>Neustarten</button></form>
             </div>
             <div id="playerlist">
 
@@ -47,10 +47,10 @@
                 <a href="{{ server.world_download }}" target="_blank"><button>World Download</button></a>
             </div>
             <div id="stats_link">
-                <a href="{{ server.name }}_statistics"><img src="{{ url_for('static', filename='images/stats_link.png') }}" alt="statistics" ></a>
+                <a href="{{ url_for('server_statistics', server_name=server.name) }}"><img src="{{ url_for('static', filename='images/stats_link.png') }}" alt="statistics" ></a>
             </div>
             <div id="gallery_link">
-                <a href="{{ server.name }}_gallery"><img src="{{ url_for('static', filename='images/gallery_link.png') }}" alt="gallery" ></a>
+                <a href="{{ url_for('server_gallery', server_name=server.name) }}"><img src="{{ url_for('static', filename='images/gallery_link.png') }}" alt="gallery" ></a>
             </div>
         </div>
     </div>

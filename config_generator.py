@@ -4,9 +4,9 @@ import json
 
 def create_json(data):
     try: 
-        with open(f"data/config/{data['name']}.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
+        with open(f"server/{data['name']}/config.json", "w", encoding="utf-8") as f: json.dump(data,f,indent=4,ensure_ascii=False)
     except FileNotFoundError:
-        os.makedirs("data/config")
+        os.makedirs(f"server/{data['name']}")
         create_json(data=data)
 
 
@@ -22,4 +22,19 @@ def get_server_data():
                 requirements[requirement] = user_input
     create_json(data=requirements)
 
-get_server_data()
+def make_folder_tree():
+    folders = ["screenshots"]
+    try:
+        for server in os.listdir("server"):
+            for folder in folders:
+                if not os.path.isdir(f"server/{server}/{folder}"): 
+                    os.makedirs(f"server/{server}/{folder}")
+    except FileNotFoundError: os.makedirs(f"server")
+
+
+user_input = input("New Project (1) | Update Folder Tree (2) | ")
+match user_input:
+    case "1":
+        get_server_data()
+    case "2":
+        make_folder_tree()

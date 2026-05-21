@@ -26,8 +26,8 @@ class Launcher():
             subprocess.run(["screen", "-XS", self.start_cmd[2], "quit"], check=False)
         elif self.start_cmd[2] == "mc":
             subprocess.run(["screen", "-S", "mc", "-X", "stuff","stop\r"], check=True)
-            time.sleep(10)
-            subprocess.run(["screen", "-XS", self.start_cmd[2], "quit"], check=False)
+            # time.sleep(10)
+            # subprocess.run(["screen", "-XS", self.start_cmd[2], "quit"], check=False) #screen terminates automatically?
 
     def restart_instance(self):
         self.stop_instance()

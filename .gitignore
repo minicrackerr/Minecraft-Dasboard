@@ -1,8 +1,10 @@
 test.py
 secret.py
 latest.txt
+GEMINI.md
 
-data/
+notizen/
+server/
 env/
 __pycache__/
 

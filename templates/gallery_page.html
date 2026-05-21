@@ -3,10 +3,16 @@
 {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_page.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery_page.css') }}">
     <title>Gallery</title>
 {% endblock %}
 
 {% block body %}
-
+    <h1 id="heading">Gallery</h1>
+    <div id="screenshots">
+        {% for screenshot in server.screenshots%}
+        <div style="background-image: url('{{ url_for('return_screenshot', server_name=server.name, filename=screenshot) }}');">
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -14,8 +14,8 @@ app = flask.Flask(__name__)
 
 server_list = {}
 
-for file in os.listdir("data/config/"):
-    with open(f"data/config/{file}", "r", encoding="utf-8") as f: data = json.load(f)
+for server in os.listdir("server"):
+    with open(f"server/{server}/config.json", "r", encoding="utf-8") as f: data = json.load(f)
     server_list[data["name"]] = Server(data=data)
 
 ### MAIN-PAGE
@@ -24,36 +24,49 @@ for file in os.listdir("data/config/"):
 def main_page():
     return flask.render_template("main_page.html",server_list=server_list)
 
+@app.route('/server/<server_name>')
+def server_dashboard(server_name):
+    if server_name not in server_list: flask.abort(404)
+    server = server_list[server_name]
+    server.refresh()
+    return flask.render_template("dashboard_page.html",server=server)
 
-@app.route('/<request>', methods=['POST','GET'])
-def index(request):
-    if request in server_list:
-        server = server_list[request]
-        server.refresh()
-        return flask.render_template("dashboard_page.html",server=server)
-    if request in [server_list[x].name+"_gallery" for x in server_list]: #trigger gallery
-        server = server_list[request[:-8]]
-        return flask.render_template("dashboard_page.html",server=server)
-    if request in [server_list[x].name+"_controls_triggered" for x in server_list]: #trigger buttons
-        server = server_list[request[:-19]]
-        button_value = flask.request.form.get("controls")
-        if button_value == "start":
-            playit_launcher.start_instance()
-            server.launcher.start_instance()
-        elif button_value == "stop":
-            playit_launcher.stop_instance()
-            server.launcher.stop_instance()
-        elif button_value == "restart":
-            playit_launcher.restart_instance()
-            server.launcher.restart_instance()
-        return flask.redirect(f"/{server.name}")
-    if request in [server_list[x].name+"_command_submitted" for x in server_list]: #trigger command subbmitted
-        server = server_list[request[:-18]]
-        text_input = flask.request.form.get("command")
-        server.send_message(text_input)
-        return flask.redirect(f"/{server.name}")
-    else:
-        return "Not Found", 404
+@app.route('/server/<server_name>/gallery')
+def server_gallery(server_name):
+    if server_name not in server_list: flask.abort(404)
+    server = server_list[server_name]
+    server.refresh()
+    return flask.render_template("gallery_page.html",server=server)
+
+@app.route('/server/<server_name>/statistics')
+def server_statistics(server_name):
+    if server_name not in server_list: flask.abort(404)
+    server = server_list[server_name]
+    server.refresh()
+    return flask.render_template("gallery_page.html",server=server)
+
+@app.route('/server/<server_name>/controlls/<value>', methods=['POST','GET'])
+def server_controlls(server_name, value):
+    if server_name not in server_list: flask.abort(404)
+    server = server_list[server_name]
+    if value == "start":
+        playit_launcher.start_instance()
+        server.launcher.start_instance()
+    elif value == "stop":
+        playit_launcher.stop_instance()
+        server.launcher.stop_instance()
+    elif value == "restart":
+        playit_launcher.restart_instance()
+        server.launcher.restart_instance()
+    return flask.redirect(f"/server/{server_name}")
+
+### FILE ACCESS
+
+@app.route('/server/<server_name>/screenshots/<filename>')
+def return_screenshot(server_name, filename):
+    screenshots_path = f"server/{server_list[server_name].name}/screenshots"
+    return flask.send_from_directory(screenshots_path, filename)
+
 
 
 if __name__ == "__main__":
