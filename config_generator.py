@@ -8,7 +8,7 @@ def create_json(data):
     except FileNotFoundError:
         os.makedirs(f"server/{data['name']}")
         create_json(data=data)
-
+    make_folder_tree()
 
 def get_server_data():
     requirements = {"name":"","ip":CC.IP,"modpack":"","version":"","modpack_download":CC.MODPACK_DOWNLOAD,
