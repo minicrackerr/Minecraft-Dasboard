@@ -61,7 +61,8 @@ class Server:
             chat_history = new_message = ""
             for line in file:
                 if not line.find("[Not Secure]") == -1:
-                    message = f'[{line[11:16]}] {line.replace("[Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Not Secure]", "").replace("[","<").replace("]",">").replace("<Rcon>","<Dashboard>")[26:]}'
+                    beginning_location = line.find("[Not Secure]")+13
+                    message = f'{line.replace("[","<").replace("]",">").replace("<Rcon>","<Dashboard>")[beginning_location:]}'
                     #\n each BP (BREAKING_POINT) chars
                     BP = 52
                     if len(message) > BP:
@@ -72,7 +73,12 @@ class Server:
                         new_message = ""
                     else: chat_history += message
                 if not line.find("joined the game") == -1:
-                    join_message = f"[{line[12:17]}] {line[88:]}"
+                    beginning_location = line.find("[net.minecraft.server.MinecraftServer/]:")+41
+                    join_message = f"{line[beginning_location:]}"
+                    chat_history += join_message
+                if not line.find("left the game") == -1:
+                    beginning_location = line.find("[net.minecraft.server.MinecraftServer/]:")+41
+                    join_message = f"{line[beginning_location:]}"
                     chat_history += join_message
             return chat_history
 
